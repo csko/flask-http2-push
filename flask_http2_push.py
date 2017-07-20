@@ -72,8 +72,8 @@ def _set_manifest_cache(manifest):
         # i.e., https://mysite.com/ + /some-url = http://mysite.com//some-url
         link_header_value = ['<{url}>; rel={rel}; as={type}'.format(
             url=url,
-            type=metadata['rel'],
-            rel=metadata.get('type', 'preload'),
+            type=metadata['type'],
+            rel=metadata.get('rel', 'preload'),
         ) for url, metadata in six.iteritems(push_urls)]
 
         manifest_cache[manifest] = ','.join(link_header_value)
