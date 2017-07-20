@@ -72,7 +72,7 @@ def _set_manifest_cache(manifest):
         # i.e., https://mysite.com/ + /some-url = http://mysite.com//some-url
         link_header_value = ['<{url}>; rel={rel}; as={type}'.format(
             url=url,
-            type=metadata['type'],
+            type=metadata['rel'],
             rel=metadata.get('type', 'preload'),
         ) for url, metadata in six.iteritems(push_urls)]
 
