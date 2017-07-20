@@ -70,9 +70,10 @@ def _set_manifest_cache(manifest):
 
         # JDAV 11-JAN-2017 Start from second char `[1:]` to avoid double slash
         # i.e., https://mysite.com/ + /some-url = http://mysite.com//some-url
-        link_header_value = ['<{host}{url}>; rel=preload; as={type}'.format(
-            host=flask.request.url_root,
-            url=url[1:],
-            type=metadata['type']) for url, metadata in six.iteritems(push_urls)]
+        link_header_value = ['<{url}>; rel={rel}; as={type}'.format(
+            url=url,
+            type=metadata['type'],
+            rel=metadata.get('type', 'preload'),
+        ) for url, metadata in six.iteritems(push_urls)]
 
         manifest_cache[manifest] = ','.join(link_header_value)
